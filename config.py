@@ -1,0 +1,5 @@
+ROOT = './dataset/Intel/'
+BATCH_SIZE = 32
+LR = 1e-3
+IMAGE_WIDTH = 224
+IMAGE_WEIGHT = 224

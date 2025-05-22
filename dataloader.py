@@ -19,7 +19,7 @@ def get_transforms(train=True):
                           T.ToTensor()])
     
 
-def get_loaders(root, train=True):
+def get_loaders():
     
     trn_transforms = get_transforms(train=True)
     val_transforms = get_transforms(train=False)

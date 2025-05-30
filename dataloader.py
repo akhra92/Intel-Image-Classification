@@ -11,7 +11,7 @@ def get_transforms(train=True):
 
     if train:
         return T.Compose([T.Resize((cfg.IMAGE_HEIGHT, cfg.IMAGE_WIDTH)),
-                          T.RandomAffine(degrees=0.3, translate=0.3, scale=0.3),
+                          T.RandomAffine(degrees=0.3, translate=(0.3, 0.3), scale=0.3),
                           T.ColorJitter(brightness=0.3, saturation=0.3, hue=0.3),
                           T.ToTensor()])
     else:

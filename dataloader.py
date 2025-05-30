@@ -5,13 +5,14 @@ from torchvision import transforms as T
 from torchvision import datasets
 import config as cfg
 from glob import glob
+import os
 
 
 def get_transforms(train=True):
 
     if train:
         return T.Compose([T.Resize((cfg.IMAGE_HEIGHT, cfg.IMAGE_WIDTH)),
-                          T.RandomAffine(degrees=0.3, translate=(0.3, 0.3), scale=0.3),
+                          T.RandomAffine(degrees=0.3, translate=(0.3, 0.3), scale=(0.7, 1.3)),
                           T.ColorJitter(brightness=0.3, saturation=0.3, hue=0.3),
                           T.ToTensor()])
     else:
@@ -24,8 +25,8 @@ def get_loaders():
     trn_transforms = get_transforms(train=True)
     val_transforms = get_transforms(train=False)
 
-    trn_data_dir = glob(cfg.ROOT + 'seg_train/*')
-    val_data_dir = glob(cfg.ROOT + 'seg_test/*')
+    trn_data_dir = os.path.join(cfg.ROOT, 'seg_train/seg_train/')
+    val_data_dir = os.path.join(cfg.ROOT, 'seg_test/seg_test/')
 
     trn_dataset = datasets.ImageFolder(root=trn_data_dir, transform=trn_transforms)
     val_dataset = datasets.ImageFolder(root=val_data_dir, transform=val_transforms)

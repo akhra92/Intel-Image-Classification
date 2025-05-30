@@ -7,7 +7,7 @@ import config as cfg
 
 
 def plot(num_images, cols=4):
-    dataset = datasets.ImageFolder(root=cfg.ROOT + 'seg_test/*', transform=T.ToTensor())
+    dataset = datasets.ImageFolder(root=cfg.ROOT + 'seg_test/seg_test/', transform=T.ToTensor())
     rows = (num_images + cols - 1) // cols
     plt.figure(figsize=(cols*3, rows*3))
     indices = random.sample(range(len(dataset)), num_images)

@@ -15,9 +15,9 @@ from tqdm import tqdm
 
 
 trn_loader, val_loader = get_loaders()
-model = timm.create_model(model_name='resnext150', pretrained=True, num_classes=6).to(cfg.DEVICE)
+model = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=6).to(cfg.DEVICE)
 criterion = nn.CrossEntropyLoss()
-optimizer = AdamW(model.params(), lr=cfg.LR, weight_decay=5e-3)
+optimizer = AdamW(model.parameters(), lr=cfg.LR, weight_decay=5e-3)
 best_val_acc = 0.0
 best_val_acc_es = 0.0
 patience = 3

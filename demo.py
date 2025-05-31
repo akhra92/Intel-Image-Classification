@@ -12,7 +12,7 @@ def run(args):
     cls_names = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
     num_classes = len(cls_names)
     tfs = get_transforms(train=False)
-    default_path = './sample_images/image_0.jpg'
+    default_path = './sample_images/465.jpg'
 
     model = load_model(num_classes, args.checkpoint_path)
     st.title('Intel Image Classification')

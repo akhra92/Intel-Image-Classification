@@ -1,6 +1,6 @@
 # Objects Classification using ResNext101
 
-This project focuses on classifying car images into different brands using a ResNext101 pre-trained model from timm library. The goal is to achieve high accuracy in identifying different objects based on visual features.
+This project focuses on classifying various objects using a ResNext101 pre-trained model from timm library. The goal is to achieve high accuracy in identifying different objects based on visual features.
 
 You can also deploy this model using streamlit. Demo can accessed using the following link: [Intel Image Classification Demo](https://intel-image-classification-demo.streamlit.app/)
 

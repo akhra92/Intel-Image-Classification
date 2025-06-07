@@ -19,4 +19,5 @@ def plot(num_images, cols=4):
         plt.title(dataset.classes[y])
         plt.axis('off')
     plt.tight_layout()
+    plt.savefig('assets/samples.png')
     plt.show()

@@ -14,16 +14,14 @@ from utils import plot
 from tqdm import tqdm
 
 
-trn_loader, val_loader = get_loaders()
-model = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=6).to(cfg.DEVICE)
-criterion = nn.CrossEntropyLoss()
-optimizer = AdamW(model.parameters(), lr=cfg.LR, weight_decay=5e-3)
-best_val_acc = 0.0
-best_val_acc_es = 0.0
-patience = 3
-
-
 def main():
+    trn_loader, val_loader = get_loaders()
+    model = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=6).to(cfg.DEVICE)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = AdamW(model.parameters(), lr=cfg.LR, weight_decay=5e-3)
+    best_val_acc = 0.0
+    best_val_acc_es = 0.0
+    patience = 3
     trn_loss, val_loss = [], []
     trn_acc, val_acc = [], []
     for epoch in range(cfg.NUM_EPOCHS):
@@ -31,6 +29,7 @@ def main():
         trn_epoch_acc, val_epoch_acc = [], []
         print(f'Epoch: {epoch+1}/{cfg.NUM_EPOCHS}')
         for batch in tqdm(trn_loader, desc='Training'):
+            x, y = batch
             x, y = x.to(cfg.DEVICE), y.to(cfg.DEVICE)
             acc, loss = train(x, y, model, criterion, optimizer)
             trn_epoch_acc.append(acc)

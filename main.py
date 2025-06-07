@@ -65,7 +65,10 @@ def main():
         val_acc.append(val_epoch_acc)
         val_loss.append(val_epoch_loss)
 
+        return trn_acc, trn_loss, val_acc, val_loss
+
 
 if __name__ == '__main__':
-    plot(20)
-    main()
+    plot_samples(20)
+    trn_acc, trn_loss, val_acc, val_loss = main()
+    plot_curves()

@@ -1,4 +1,4 @@
-# 🚗 Car Brands Classification using ResNext101
+# Objects Classification using ResNext101
 
 This project focuses on classifying car images into different brands using a ResNext101 pre-trained model from timm library. The goal is to achieve high accuracy in identifying different objects based on visual features.
 

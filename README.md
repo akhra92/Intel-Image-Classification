@@ -12,7 +12,7 @@ You can also deploy this model using streamlit.
 - **Dataset**: Images of cars belonging to various objects (e.g., buildings, forest, mountain, etc.)
 - **Model**: ResNext101 (pre-trained model from timm library)
 - **Framework**: PyTorch
-- **Evaluation Metrics**: Accuracy, Loss, Confusion Matrix
+- **Evaluation Metrics**: Accuracy, Loss
 
 ---
 
@@ -20,7 +20,7 @@ You can also deploy this model using streamlit.
 
 Below are some random samples from the dataset with corresponding labels:
 
-![Dataset Samples](assets/samples1.png)
+![Dataset Samples](assets/samples.png)
 
 ---
 
@@ -29,18 +29,9 @@ Below are some random samples from the dataset with corresponding labels:
 Here are the learning curves showing **Accuracy** and **Loss** over epochs:
 
 ### Train and Validation Curves
-![Curves](assets/plots1.png)
+![Curves](assets/learning_curves.png)
 
 ---
-
-## 🧮 Confusion Matrix
-
-The confusion matrix below illustrates the model's performance across different car brand classes.
-
-![Confusion Matrix](assets/confusion1.png)
-
----
-
 
 ## 🚀 How to Run
 

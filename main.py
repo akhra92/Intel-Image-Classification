@@ -9,7 +9,7 @@ import numpy as np
 import config as cfg
 from train import train
 from test import test
-from dataloader import get_loaders, get_transforms
+from dataloader import get_loaders
 from utils import plot_samples, plot_curves
 from tqdm import tqdm
 

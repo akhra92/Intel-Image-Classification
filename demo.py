@@ -13,10 +13,13 @@ def run(args):
     num_classes = len(cls_names)
     tfs = get_transforms(train=False)
     default_path = 'sample_images/465.jpg'
+    sample_path = 'assets/samples.png'
 
     model = load_model(num_classes, args.checkpoint_path)
     st.title('Intel Image Classification')
     file = st.file_uploader(f'Please upload your image from this category: {cls_names}')
+    st.write('Sample Images: ')
+    st.image(sample_path)
 
     im, out = predict(m=model, path=file, tfs=tfs, cls_names=cls_names) if file else predict(m=model, path=default_path, tfs=tfs, cls_names=cls_names)
     st.write('Input Image: ')

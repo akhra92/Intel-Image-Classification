@@ -12,7 +12,7 @@ def run(args):
     cls_names = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
     num_classes = len(cls_names)
     tfs = get_transforms(train=False)
-    default_path = './sample_images/465.jpg'
+    default_path = 'sample_images/465.jpg'
 
     model = load_model(num_classes, args.checkpoint_path)
     st.title('Intel Image Classification')
@@ -41,7 +41,7 @@ def predict(m, path, tfs, cls_names):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Intel Image Classification Demo')
-    parser.add_argument('-cp', '--checkpoint_path', type=str, default='./saved_models/best_model.pth', help='Path to the checkpoint')
+    parser.add_argument('-cp', '--checkpoint_path', type=str, default='saved_models/best_model_final.pth', help='Path to the checkpoint')
 
     args = parser.parse_args()
 

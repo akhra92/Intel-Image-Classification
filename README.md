@@ -29,7 +29,7 @@ Below are some random samples from the dataset with corresponding labels:
 Here are the learning curves showing **Accuracy** and **Loss** over epochs:
 
 ### Train and Validation Curves
-![Curves](assets/learning_curves.png)
+![Curves](assets/learning_curve.png)
 
 ---
 

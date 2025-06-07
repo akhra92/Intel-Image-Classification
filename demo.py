@@ -44,7 +44,7 @@ def predict(m, path, tfs, cls_names):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Intel Image Classification Demo')
-    parser.add_argument('-cp', '--checkpoint_path', type=str, default='saved_models/best_model_final.pth', help='Path to the checkpoint')
+    parser.add_argument('-cp', '--checkpoint_path', type=str, default='saved_model/best_model_final.pth', help='Path to the checkpoint')
 
     args = parser.parse_args()
 

@@ -10,7 +10,7 @@ import config as cfg
 from train import train
 from test import test
 from dataloader import get_loaders, get_transforms
-from utils import plot
+from utils import plot_samples, plot_curves
 from tqdm import tqdm
 
 
@@ -65,10 +65,10 @@ def main():
         val_acc.append(val_epoch_acc)
         val_loss.append(val_epoch_loss)
 
-        return trn_acc, trn_loss, val_acc, val_loss
+    return trn_acc, trn_loss, val_acc, val_loss
 
 
 if __name__ == '__main__':
     plot_samples(20)
     trn_acc, trn_loss, val_acc, val_loss = main()
-    plot_curves()
+    plot_curves(trn_acc, trn_loss, val_acc, val_loss)

@@ -26,7 +26,7 @@ def run(args):
     st.image(im)
     st.write(f'Predicted as {out}')
 
-
+@st.cache_resource
 def load_model(num_classes, checkpoint_path):
     m = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=num_classes)
     m.load_state_dict(torch.load(checkpoint_path, map_location='cpu'))

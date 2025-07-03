@@ -16,6 +16,7 @@ logs/
 
 # Dataset Images
 dataset/
+saved_models/
 
 # Model files & checkpoints
 *.ckpt

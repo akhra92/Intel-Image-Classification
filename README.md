@@ -1,17 +1,18 @@
-# Objects Classification using ResNext101
+# Intel Scene Classification using ResNext101
 
-This project focuses on classifying various objects using a ResNext101 pre-trained model from timm library. The goal is to achieve high accuracy in identifying different objects based on visual features.
+This project focuses on classifying natural scenes and landscapes using a ResNext101 pre-trained model from the timm library. The goal is to achieve high accuracy in identifying different scene categories based on visual features.
 
-You can also deploy this model using streamlit. Demo can accessed using the following link: [Intel Image Classification Demo](https://intel-image-classification-demo.streamlit.app/)
+You can also deploy this model using Streamlit. The demo can be accessed using the following link: [Intel Image Classification Demo](https://intel-image-classification-demo.streamlit.app/)
 
 ---
 
 ## 📊 Project Overview
 
-- **Task**: Multi-class image classification
-- **Dataset**: Images of cars belonging to various objects (e.g., buildings, forest, mountain, etc.)
+- **Task**: Multi-class scene classification
+- **Dataset**: Images belonging to 6 scene categories (buildings, forest, glacier, mountain, sea, street)
 - **Model**: ResNext101 (pre-trained model from timm library)
 - **Framework**: PyTorch
+- **Python**: 3.10+
 - **Evaluation Metrics**: Accuracy, Loss
 
 ---
@@ -42,6 +43,8 @@ Here are the learning curves showing **Accuracy** and **Loss** over epochs:
    cd Intel-Image-Classification
    ```
 
+2. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/puneet6060/intel-image-classification) and extract it into the `dataset/Intel/` directory.
+
 3. Install dependencies:
 
    ```
@@ -54,8 +57,14 @@ Here are the learning curves showing **Accuracy** and **Loss** over epochs:
    python main.py
    ```
 
-5. Deploy in local using streamlit:
+5. Deploy locally using Streamlit:
    
    ```
    streamlit run demo.py
+   ```
+
+   You can also specify a custom checkpoint path:
+
+   ```
+   streamlit run demo.py -- -cp path/to/your/model.pth
    ```

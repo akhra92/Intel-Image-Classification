@@ -36,7 +36,6 @@ def load_model(num_classes, checkpoint_path):
 
 def predict(m, path, tfs, cls_names):
     im = Image.open(path)
-    im.save(path)
 
     return im, cls_names[int(torch.max(m(tfs(im).unsqueeze(0)).data, 1)[1])]
 

@@ -10,13 +10,17 @@ import os
 
 def get_transforms(train=True):
 
+    normalize = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+
     if train:
         return T.Compose([T.Resize((cfg.IMAGE_HEIGHT, cfg.IMAGE_WIDTH)),
                           T.RandomHorizontalFlip(p=0.3),
-                          T.ToTensor()])
+                          T.ToTensor(),
+                          normalize])
     else:
         return T.Compose([T.Resize((cfg.IMAGE_HEIGHT, cfg.IMAGE_WIDTH)),
-                          T.ToTensor()])
+                          T.ToTensor(),
+                          normalize])
     
 
 def get_loaders():

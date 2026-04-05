@@ -17,4 +17,4 @@ def train(x, y, model, criterion, optimizer):
     loss.backward()
     optimizer.step()
 
-    return loss.item(), acc.item()
+    return acc.item(), loss.item()

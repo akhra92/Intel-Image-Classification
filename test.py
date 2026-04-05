@@ -13,4 +13,4 @@ def test(x, y, model, criterion):
     predicted = torch.argmax(pred, dim=1)
     acc = (predicted == y).float().mean()
 
-    return loss.item(), acc.item()
+    return acc.item(), loss.item()

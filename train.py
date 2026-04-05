@@ -6,7 +6,6 @@ import numpy as np
 
 
 def train(x, y, model, criterion, optimizer):
-    model.train()
     pred = model(x)
     loss = criterion(pred, y)
     

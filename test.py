@@ -6,7 +6,6 @@ import numpy as np
 
 @torch.no_grad()
 def test(x, y, model, criterion):
-    model.eval()
     pred = model(x)
     loss = criterion(pred, y)
     

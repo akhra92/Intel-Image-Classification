@@ -28,12 +28,14 @@ def main():
         trn_epoch_loss, val_epoch_loss = [], []
         trn_epoch_acc, val_epoch_acc = [], []
         print(f'Epoch: {epoch+1}/{cfg.NUM_EPOCHS}')
+        model.train()
         for batch in tqdm(trn_loader, desc='Training'):
             x, y = batch
             x, y = x.to(cfg.DEVICE), y.to(cfg.DEVICE)
             acc, loss = train(x, y, model, criterion, optimizer)
             trn_epoch_acc.append(acc)
             trn_epoch_loss.append(loss)
+        model.eval()
         for batch in tqdm(val_loader, desc='Validation'):
             x, y = batch
             x, y = x.to(cfg.DEVICE), y.to(cfg.DEVICE)

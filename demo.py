@@ -34,6 +34,7 @@ def load_model(num_classes, checkpoint_path):
     return m.eval()
 
 
+@torch.no_grad()
 def predict(m, path, tfs, cls_names):
     im = Image.open(path)
 

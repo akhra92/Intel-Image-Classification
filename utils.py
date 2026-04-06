@@ -46,5 +46,5 @@ def plot_curves(trn_acc, trn_loss, val_acc, val_loss):
     plt.legend()
     
     plt.tight_layout()
-    plt.savefig('learning_curves.png')
+    plt.savefig('assets/learning_curve.png')
     plt.close()

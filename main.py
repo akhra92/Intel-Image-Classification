@@ -29,8 +29,8 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=cfg.LR, weight_decay=5e-3)
     best_val_acc = 0.0
-    best_val_acc_es = 0.0
     patience = 3
+    count = 0
     trn_loss, val_loss = [], []
     trn_acc, val_acc = [], []
     for epoch in range(cfg.NUM_EPOCHS):
@@ -62,8 +62,7 @@ def main():
             print(f'Saving the model at epoch {epoch+1} with val accuracy {best_val_acc}')
             torch.save(model.state_dict(), 'best_model.pth')
         
-        if val_epoch_acc > best_val_acc_es:
-            best_val_acc_es = val_epoch_acc
+        if val_epoch_acc > best_val_acc:
             count = 0
         else:
             count += 1

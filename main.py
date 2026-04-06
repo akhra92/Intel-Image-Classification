@@ -17,8 +17,17 @@ from tqdm import tqdm
 def main():
     trn_loader, val_loader = get_loaders()
     model = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=6).to(cfg.DEVICE)
+
+    # Freeze all layers, then unfreeze the last block and classifier head
+    for param in model.parameters():
+        param.requires_grad = False
+    for param in model.layer4.parameters():
+        param.requires_grad = True
+    for param in model.fc.parameters():
+        param.requires_grad = True
+
     criterion = nn.CrossEntropyLoss()
-    optimizer = AdamW(model.parameters(), lr=cfg.LR, weight_decay=5e-3)
+    optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=cfg.LR, weight_decay=5e-3)
     best_val_acc = 0.0
     best_val_acc_es = 0.0
     patience = 3

@@ -34,7 +34,8 @@ def get_loaders():
     trn_dataset = datasets.ImageFolder(root=trn_data_dir, transform=trn_transforms)
     val_dataset = datasets.ImageFolder(root=val_data_dir, transform=val_transforms)
 
-    trn_loader = DataLoader(dataset=trn_dataset, batch_size=cfg.BATCH_SIZE, shuffle=True, num_workers=cfg.NUM_WORKERS)
-    val_loader = DataLoader(dataset=val_dataset, batch_size=cfg.BATCH_SIZE, shuffle=False, num_workers=cfg.NUM_WORKERS)
+    pin = cfg.DEVICE == 'cuda'
+    trn_loader = DataLoader(dataset=trn_dataset, batch_size=cfg.BATCH_SIZE, shuffle=True, num_workers=cfg.NUM_WORKERS, pin_memory=pin)
+    val_loader = DataLoader(dataset=val_dataset, batch_size=cfg.BATCH_SIZE, shuffle=False, num_workers=cfg.NUM_WORKERS, pin_memory=pin)
 
     return trn_loader, val_loader

@@ -1,9 +1,6 @@
 import torch
 from torch.optim import AdamW
 import torch.nn as nn
-import torch.nn.functional as F
-import torchvision
-import torchvision.transforms as T
 import timm
 import numpy as np
 import config as cfg

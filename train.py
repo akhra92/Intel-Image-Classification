@@ -1,8 +1,5 @@
-import torch.nn as nn
-import config as cfg
 import torch
-import torchvision
-import numpy as np
+import config as cfg
 
 
 def train(x, y, model, criterion, optimizer):

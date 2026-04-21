@@ -20,7 +20,7 @@ def plot_samples(num_images, cols=4):
         plt.axis('off')
     plt.tight_layout()
     plt.savefig('assets/samples.png')
-    plt.show()
+    plt.close()
 
 
 def plot_curves(trn_acc, trn_loss, val_acc, val_loss):

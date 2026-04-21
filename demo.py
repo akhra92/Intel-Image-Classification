@@ -1,34 +1,33 @@
 import torch
-import argparse
 from dataloader import get_transforms
 from PIL import Image
 import timm
 import streamlit as st
-import config as cfg
 
 
-def run(args):
+DEFAULT_CHECKPOINT = 'saved_model/best_model_final.pth'
+CLS_NAMES = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
+DEFAULT_IMAGE = 'sample_images/475.jpg'
+SAMPLE_PATH = 'assets/samples.png'
 
-    cls_names = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
-    num_classes = len(cls_names)
+
+def run():
     tfs = get_transforms(train=False)
-    default_path = 'sample_images/475.jpg'
-    sample_path = 'assets/samples.png'
-
-    model = load_model(num_classes, args.checkpoint_path)
+    model = load_model(len(CLS_NAMES), DEFAULT_CHECKPOINT)
     st.title('Intel Image Classification')
-    file = st.file_uploader(f'Please upload your image from this category: {cls_names}')
+    file = st.file_uploader(f'Please upload your image from this category: {CLS_NAMES}')
     st.write('Sample Images: ')
-    st.image(sample_path)
+    st.image(SAMPLE_PATH)
 
-    im, out = predict(m=model, path=file, tfs=tfs, cls_names=cls_names) if file else predict(m=model, path=default_path, tfs=tfs, cls_names=cls_names)
+    im, out = predict(m=model, path=file, tfs=tfs, cls_names=CLS_NAMES) if file else predict(m=model, path=DEFAULT_IMAGE, tfs=tfs, cls_names=CLS_NAMES)
     st.write('Input Image: ')
     st.image(im)
     st.write(f'Predicted as {out}')
 
+
 @st.cache_resource
 def load_model(num_classes, checkpoint_path):
-    m = timm.create_model(model_name='resnext101_32x8d', pretrained=True, num_classes=num_classes)
+    m = timm.create_model(model_name='resnext101_32x8d', pretrained=False, num_classes=num_classes)
     m.load_state_dict(torch.load(checkpoint_path, map_location='cpu'))
 
     return m.eval()
@@ -41,11 +40,4 @@ def predict(m, path, tfs, cls_names):
     return im, cls_names[int(torch.max(m(tfs(im).unsqueeze(0)).data, 1)[1])]
 
 
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='Intel Image Classification Demo')
-    parser.add_argument('-cp', '--checkpoint_path', type=str, default='saved_model/best_model_final.pth', help='Path to the checkpoint')
-
-    args = parser.parse_args()
-
-    run(args)
+run()

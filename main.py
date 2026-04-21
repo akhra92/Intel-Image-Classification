@@ -59,11 +59,9 @@ def main():
 
         if val_epoch_acc > best_val_acc:
             best_val_acc = val_epoch_acc
+            count = 0
             print(f'Saving the model at epoch {epoch+1} with val accuracy {best_val_acc}')
             torch.save(model.state_dict(), 'best_model.pth')
-        
-        if val_epoch_acc > best_val_acc:
-            count = 0
         else:
             count += 1
             print(f'No improvement for {count} times.')

@@ -58,13 +58,9 @@ Here are the learning curves showing **Accuracy** and **Loss** over epochs:
    ```
 
 5. Deploy locally using Streamlit:
-   
+
    ```
    streamlit run demo.py
    ```
 
-   You can also specify a custom checkpoint path:
-
-   ```
-   streamlit run demo.py -- -cp path/to/your/model.pth
-   ```
+   The app expects the trained model at `saved_model/best_model_final.pth`. After training, rename or copy `saved_model/best_model.pth` to `best_model_final.pth` in the same folder.

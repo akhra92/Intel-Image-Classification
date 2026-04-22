@@ -1,4 +1,5 @@
 import torch
+import os
 from dataloader import get_transforms
 from PIL import Image
 import timm
@@ -19,10 +20,18 @@ def run():
     st.write('Sample Images: ')
     st.image(SAMPLE_PATH)
 
-    im, out = predict(m=model, path=file, tfs=tfs, cls_names=CLS_NAMES) if file else predict(m=model, path=DEFAULT_IMAGE, tfs=tfs, cls_names=CLS_NAMES)
-    st.write('Input Image: ')
-    st.image(im)
-    st.write(f'Predicted as {out}')
+    if file:
+        im, out = predict(m=model, path=file, tfs=tfs, cls_names=CLS_NAMES)
+        st.write('Input Image: ')
+        st.image(im)
+        st.write(f'Predicted as {out}')
+    elif os.path.exists(DEFAULT_IMAGE):
+        im, out = predict(m=model, path=DEFAULT_IMAGE, tfs=tfs, cls_names=CLS_NAMES)
+        st.write('Input Image: ')
+        st.image(im)
+        st.write(f'Predicted as {out}')
+    else:
+        st.error(f'Default image not found at "{DEFAULT_IMAGE}". Please upload an image to continue.')
 
 
 @st.cache_resource

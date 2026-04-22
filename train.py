@@ -1,5 +1,4 @@
 import torch
-import config as cfg
 
 
 def train(x, y, model, criterion, optimizer):

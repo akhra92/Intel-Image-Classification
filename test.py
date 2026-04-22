@@ -1,5 +1,4 @@
 import torch
-import config as cfg
 
 @torch.no_grad()
 def test(x, y, model, criterion):

@@ -1,5 +1,6 @@
 import torch
 from torch.optim import AdamW
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 import torch.nn as nn
 import timm
 import numpy as np
@@ -25,6 +26,7 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=cfg.LR, weight_decay=1e-4)
+    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=2)
     best_val_acc = 0.0
     patience = cfg.PATIENCE
     count = 0
@@ -53,6 +55,8 @@ def main():
         trn_epoch_loss = np.mean(trn_epoch_loss)
         val_epoch_acc = np.mean(val_epoch_acc)
         val_epoch_loss = np.mean(val_epoch_loss)
+
+        scheduler.step(val_epoch_acc)
 
         if val_epoch_acc > best_val_acc:
             best_val_acc = val_epoch_acc

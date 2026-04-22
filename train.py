@@ -3,13 +3,13 @@ import config as cfg
 
 
 def train(x, y, model, criterion, optimizer):
+    optimizer.zero_grad()
     pred = model(x)
     loss = criterion(pred, y)
-    
+
     predicted = torch.argmax(pred, dim=1)
     acc = (predicted == y).float().mean()
 
-    optimizer.zero_grad()
     loss.backward()
     optimizer.step()
 

@@ -26,7 +26,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=cfg.LR, weight_decay=1e-4)
     best_val_acc = 0.0
-    patience = 3
+    patience = cfg.PATIENCE
     count = 0
     trn_loss, val_loss = [], []
     trn_acc, val_acc = [], []

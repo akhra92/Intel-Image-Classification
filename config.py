@@ -10,3 +10,4 @@ NUM_WORKERS = 2
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 NUM_EPOCHS = 30
 PATIENCE = 3
+SAVE_DIR = 'saved_model'

@@ -1,4 +1,5 @@
 import torch
+import os
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import torch.nn as nn
@@ -61,8 +62,9 @@ def main():
         if val_epoch_acc > best_val_acc:
             best_val_acc = val_epoch_acc
             count = 0
+            os.makedirs(cfg.SAVE_DIR, exist_ok=True)
             print(f'Saving the model at epoch {epoch+1} with val accuracy {best_val_acc}')
-            torch.save(model.state_dict(), 'best_model.pth')
+            torch.save(model.state_dict(), os.path.join(cfg.SAVE_DIR, 'best_model.pth'))
         else:
             count += 1
             print(f'No improvement for {count} times.')
